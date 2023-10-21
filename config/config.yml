@@ -8,5 +8,7 @@ DB_FAISS_PATH: 'vectorstore/db_faiss'
 # MODEL_BIN_PATH: 'models/mpt-7b-instruct.ggmlv3.q8_0.bin'
 MODEL_TYPE: 'llama'
 MODEL_BIN_PATH: 'models/llama-2-7b-chat.ggmlv3.q8_0.bin'
+# EMBEDDINGS_MODEL: 'sentence-transformers/all-MiniLM-L6-v2'
+EMBEDDINGS_MODEL: 'models/all-MiniLM-L6-v2'
 MAX_NEW_TOKENS: 256
 TEMPERATURE: 0.01

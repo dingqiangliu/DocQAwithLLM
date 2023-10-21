@@ -23,7 +23,7 @@ def run_db_build():
                                                    chunk_overlap=cfg.CHUNK_OVERLAP)
     texts = text_splitter.split_documents(documents)
 
-    embeddings = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2',
+    embeddings = HuggingFaceEmbeddings(model_name=cfg.EMBEDDINGS_MODEL,
                                        model_kwargs={'device': 'cpu'})
 
     vectorstore = FAISS.from_documents(texts, embeddings)

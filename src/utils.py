@@ -38,7 +38,7 @@ def build_retrieval_qa(llm, prompt, vectordb):
 
 
 def setup_dbqa():
-    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2",
+    embeddings = HuggingFaceEmbeddings(model_name=cfg.EMBEDDINGS_MODEL,
                                        model_kwargs={'device': 'cpu'})
     vectordb = FAISS.load_local(cfg.DB_FAISS_PATH, embeddings)
     llm = build_llm()

@@ -16,6 +16,8 @@ ___
 
 ## Quickstart
 - Ensure you have downloaded the GGML binary file from https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML and placed it into the `models/` folder
+- Ensure you have downloaded all files from https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2 to directory `models/all-MiniLM-L6-v2/` to run without Internet. Another option is loading embedding model from Internet with setting in `config/config.yml`:
+`EMBEDDINGS_MODEL: 'sentence-transformers/all-MiniLM-L6-v2'`
 - To start parsing user queries into the application, launch the terminal from the project directory and run the following command:
 `poetry run python main.py "<user query>"`
 - For example, `poetry run python main.py "What is the minimum guarantee payable by Adidas?"`
