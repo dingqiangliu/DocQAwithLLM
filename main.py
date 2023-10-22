@@ -28,13 +28,13 @@ if __name__ == "__main__":
     # query loop
     query = args.input
     if len(query) == 0:
-        query = input('Enter the query: ').strip() 
+        query = input('\nEnter the query: ').strip() 
     while query != '\\q':
         start = timeit.default_timer()
         response = dbqa({'query': query})
         end = timeit.default_timer()
     
-        print(f'\nAnswer: {response["result"]}')
+        print(f'\nAnswer: {response["result"]}\n')
         print('='*50)
     
         # Process source documents
@@ -51,4 +51,4 @@ if __name__ == "__main__":
         if len(args.input) > 0:
             break
         print('='* 80)
-        query = input('Enter the query: ')
+        query = input('\nEnter the query: ')

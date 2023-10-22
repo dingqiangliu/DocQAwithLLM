@@ -4,6 +4,7 @@ CHUNK_SIZE: 500
 CHUNK_OVERLAP: 50
 DATA_PATH: 'data/'
 DB_FAISS_PATH: 'vectorstore/db_faiss'
+SEARCH_ONLY: True
 # MODEL_TYPE: 'mpt'
 # MODEL_BIN_PATH: 'models/mpt-7b-instruct.ggmlv3.q8_0.bin'
 MODEL_TYPE: 'llama'
