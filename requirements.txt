@@ -1,4 +1,4 @@
-ctransformers==0.2.5
+ctransformers==0.2.27
 faiss-cpu==1.7.4
 fastapi>=0.96.0
 ipykernel>=6.23.1
