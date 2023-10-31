@@ -15,7 +15,7 @@ ___
 ___
 
 ## Quickstart
-- Ensure you have downloaded the GGML binary file from https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML and placed it into the `models/` folder
+- Ensure you have downloaded the GGML binary file from https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML or GGUF binary file from https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF, and placed it into the `models/` folder
 - Ensure you have downloaded all files from https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2 to directory `models/all-MiniLM-L6-v2/` to run without Internet. Another option is loading embedding model from Internet with setting in `config/config.yml`:
 `EMBEDDINGS_MODEL: 'sentence-transformers/all-MiniLM-L6-v2'`
 - To start parsing user queries into the application, launch the terminal from the project directory and run the following command:
@@ -27,7 +27,7 @@ ___
 ___
 ## Tools
 - **LangChain**: Framework for developing applications powered by language models
-- **C Transformers**: Python bindings for the Transformer models implemented in C/C++ using GGML library
+- **C Transformers**: Python bindings for the Transformer models implemented in C/C++ using GGML or GGUF library
 - **FAISS**: Open-source library for efficient similarity search and clustering of dense vectors.
 - **Sentence-Transformers (all-MiniLM-L6-v2)**: Open-source pre-trained transformer model for embedding text to a 384-dimensional dense vector space for tasks like clustering or semantic search.
 - **Llama-2-7B-Chat**: Open-source fine-tuned Llama 2 model designed for chat dialogue. Leverages publicly available instruction datasets and over 1 million human annotations. 
@@ -38,7 +38,7 @@ ___
 - `/assets`: Images relevant to the project
 - `/config`: Configuration files for LLM application
 - `/data`: Dataset used for this project (i.e., Manchester United FC 2022 Annual Report - 177-page PDF document)
-- `/models`: Binary file of GGML quantized LLM model (i.e., Llama-2-7B-Chat) 
+- `/models`: Binary file of GGML or GGUF quantized LLM model (i.e., Llama-2-7B-Chat) 
 - `/src`: Python codes of key components of LLM application, namely `llm.py`, `utils.py`, and `prompts.py`
 - `/vectorstore`: FAISS vector store for documents
 - `db_build.py`: Python script to ingest dataset and generate FAISS vector store
@@ -51,6 +51,7 @@ ___
 - https://github.com/marella/ctransformers
 - https://huggingface.co/TheBloke
 - https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML
+- https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF
 - https://python.langchain.com/en/latest/integrations/ctransformers.html
 - https://python.langchain.com/en/latest/modules/models/llms/integrations/ctransformers.html
 - https://python.langchain.com/docs/ecosystem/integrations/ctransformers
