@@ -10,6 +10,8 @@ from typing import Any, List, Mapping, Optional
 from dotenv import find_dotenv, load_dotenv
 import box
 import yaml
+from src.chatglm import ChatGLM
+
 
 # Load environment variables from .env file
 load_dotenv(find_dotenv())
@@ -41,15 +43,21 @@ class SearchOnlyLLM(LLM):
         return {"responses": [self.response]}
 
 
+
 def build_llm():
     if cfg.SEARCH_ONLY:
         llm = SearchOnlyLLM()
     else:
-        # Local CTransformers model
-        llm = CTransformers(model=cfg.MODEL_BIN_PATH,
-                         model_type=cfg.MODEL_TYPE,
-                         config={'max_new_tokens': cfg.MAX_NEW_TOKENS,
-                                 'temperature': cfg.TEMPERATURE}
-                         )
+        if cfg.MODEL_TYPE == 'chatglm':
+            llm = ChatGLM(model=cfg.MODEL_BIN_PATH,
+                          config={}
+                          )
+        else:
+            # Local CTransformers model
+            llm = CTransformers(model=cfg.MODEL_BIN_PATH,
+                             model_type=cfg.MODEL_TYPE,
+                             config={'max_new_tokens': cfg.MAX_NEW_TOKENS,
+                                     'temperature': cfg.TEMPERATURE}
+                             )
 
     return llm

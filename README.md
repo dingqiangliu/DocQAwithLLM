@@ -7,7 +7,7 @@ ___
 ## Context
 - Third-party commercial large language model (LLM) providers like OpenAI's GPT4 have democratized LLM use via simple API calls. 
 - However, there are instances where teams would require self-managed or private model deployment for reasons like data privacy and residency rules.
-- The proliferation of open-source LLMs has opened up a vast range of options for us, thus reducing our reliance on these third-party providers. 
+- The proliferation of open-source LLMs has opened up a vast range of options for us, thus reducing our reliance on these third-party providers.
 - When we host open-source LLMs locally on-premise or in the cloud, the dedicated compute capacity becomes a key issue. While GPU instances may seem the obvious choice, the costs can easily skyrocket beyond budget.
 - In this project, we will discover how to run quantized versions of open-source LLMs on local CPU inference for document question-and-answer (Q&A).
 <br><br>
@@ -15,7 +15,8 @@ ___
 ___
 
 ## Quickstart
-- Ensure you have downloaded the GGML binary file from https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML or GGUF binary file from https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF, and placed it into the `models/` folder
+- Ensure you have downloaded the GGML binary file from https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML or GGUF binary file from https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF , and placed it into the `models/` folder.
+  Or download all files of Chinese-English bilingual model from https://huggingface.co/THUDM/chatglm2-6b-int4 , and placed it into the `models/chatglm2-6b-int4` folder.
 - Ensure you have downloaded all files from https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2 to directory `models/all-MiniLM-L6-v2/` to run without Internet. Another option is loading embedding model from Internet with setting in `config/config.yml`:
 `EMBEDDINGS_MODEL: 'sentence-transformers/all-MiniLM-L6-v2'`
 - To start parsing user queries into the application, launch the terminal from the project directory and run the following command:
@@ -52,6 +53,7 @@ ___
 - https://huggingface.co/TheBloke
 - https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML
 - https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF
+- https://huggingface.co/THUDM/chatglm2-6b-int4
 - https://python.langchain.com/en/latest/integrations/ctransformers.html
 - https://python.langchain.com/en/latest/modules/models/llms/integrations/ctransformers.html
 - https://python.langchain.com/docs/ecosystem/integrations/ctransformers
