@@ -23,7 +23,7 @@ def run_db_build():
                                         loader_cls=Docx2txtLoader)]
     documents = [doc for ld in loaders for doc in ld.load()]
 
-    if cfg.REG_SEPARATORS and len(cfg.REG_SEPARATORS) > 0:
+    if cfg.REG_SEPARATORS:
         text_splitter = CharacterTextSplitter(separator=cfg.REG_SEPARATORS,
                                               is_separator_regex=True,
                                               keep_separator=True,

@@ -27,7 +27,7 @@ if __name__ == "__main__":
     
     # query loop
     query = args.input
-    if len(query) == 0:
+    if not query:
         query = input('\nEnter the question: ').strip()
     while query != '\\q':
         start = timeit.default_timer()
@@ -52,7 +52,7 @@ if __name__ == "__main__":
         print('='*20)
         print(f"Time to retrieve response: {end - start}")
         
-        if len(args.input) > 0:
+        if args.input:
             break
         print('='* 80)
         query = input('\nEnter the query: ')
