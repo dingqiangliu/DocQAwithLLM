@@ -17,11 +17,18 @@ ___
 ## Quickstart
 - Ensure you have downloaded the GGML binary file from https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML or GGUF binary file from https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF , and placed it into the `models/` folder.
   Or download all files of Chinese-English bilingual model from https://huggingface.co/THUDM/chatglm2-6b-int4 , and placed it into the `models/chatglm2-6b-int4` folder.
+  
 - Ensure you have downloaded all files from https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2 to directory `models/all-MiniLM-L6-v2/` to run without Internet. Another option is loading embedding model from Internet with setting in `config/config.yml`:
-`EMBEDDINGS_MODEL: 'sentence-transformers/all-MiniLM-L6-v2'`
+
+  `EMBEDDINGS_MODEL: 'sentence-transformers/all-MiniLM-L6-v2'`
+
+  Or multilingal mode https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2.
+
 - To start parsing user queries into the application, launch the terminal from the project directory and run the following command:
-`poetry run python main.py "<user query>"`
+  `poetry run python main.py "<user query>"`
+
 - For example, `poetry run python main.py "What is the minimum guarantee payable by Adidas?"`
+
 - Note: Omit the prepended `poetry run` if you are NOT using Poetry
 <br><br>
 ![Alt text](assets/qa_output.png)

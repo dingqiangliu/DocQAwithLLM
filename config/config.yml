@@ -1,17 +1,28 @@
+# searching
+SEARCH_ONLY: False
 RETURN_SOURCE_DOCUMENTS: True
 VECTOR_COUNT: 2
+
+
+# text split
+REG_SEPARATORS: '[.!。！]'
 CHUNK_SIZE: 500
-CHUNK_OVERLAP: 50
+CHUNK_OVERLAP: 0
+
+
+# documents location for index/embedding
 DATA_PATH: 'data/'
+
+
+# vector database
 DB_FAISS_PATH: 'vectorstore/db_faiss'
-SEARCH_ONLY: False
 
 
 # sentence transformers model for vector search
 
 # EMBEDDINGS_MODEL: 'sentence-transformers/all-MiniLM-L6-v2'
-EMBEDDINGS_MODEL: 'models/all-MiniLM-L6-v2'
-
+#EMBEDDINGS_MODEL: 'models/all-MiniLM-L6-v2'
+EMBEDDINGS_MODEL: 'models/paraphrase-multilingual-MiniLM-L12-v2'
 
 # LLM for generating answer
 

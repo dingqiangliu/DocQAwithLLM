@@ -34,18 +34,20 @@ if __name__ == "__main__":
         response = dbqa({'query': query})
         end = timeit.default_timer()
     
-        print(f'\nAnswer: {response["result"]}\n')
-        print('='*50)
-    
         # Process source documents
         source_docs = response['source_documents'] if 'source_documents' in response else []
         for i, doc in enumerate(source_docs):
+            print('='* 50)
             print(f'\nSource Document {i+1}\n')
             print(f'Source Text: {doc.page_content}')
-            print(f'Document Name: {doc.metadata["source"]}')
-            print(f'Page Number: {doc.metadata["page"]}\n')
-            print('='* 60)
+            if 'source' in doc.metadata:
+                print(f'Document Name: {doc.metadata["source"]}')
+            if 'page' in doc.metadata:
+                print(f'Page Number: {doc.metadata["page"]}\n')
         
+        print('='*50)
+        print(f'\nAnswer: {response["result"]}\n')
+        print('='*20)
         print(f"Time to retrieve response: {end - start}")
         
         if len(args.input) > 0:
