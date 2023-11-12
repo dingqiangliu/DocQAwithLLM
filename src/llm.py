@@ -50,7 +50,9 @@ def build_llm():
     else:
         if cfg.MODEL_TYPE == 'chatglm':
             llm = ChatGLM(model=cfg.MODEL_BIN_PATH,
-                          config={}
+                          config={
+                              'max_length': cfg.MAX_NEW_TOKENS,
+                              'temperature': cfg.TEMPERATURE}
                           )
         else:
             # Local CTransformers model

@@ -6,6 +6,15 @@ DATA_PATH: 'data/'
 DB_FAISS_PATH: 'vectorstore/db_faiss'
 SEARCH_ONLY: False
 
+
+# sentence transformers model for vector search
+
+# EMBEDDINGS_MODEL: 'sentence-transformers/all-MiniLM-L6-v2'
+EMBEDDINGS_MODEL: 'models/all-MiniLM-L6-v2'
+
+
+# LLM for generating answer
+
 # MODEL_TYPE: 'mpt'
 # MODEL_BIN_PATH: 'models/mpt-7b-instruct.ggmlv3.q8_0.bin'
 
@@ -15,10 +24,11 @@ SEARCH_ONLY: False
 # MODEL_BIN_PATH: 'models/llama-2-7b-chat.ggmlv3.q4_0.bin'
 # MODEL_BIN_PATH: 'models/Llama2-chat-Chinese-50W-GGML.ggmlv3.q8_0.bin'
 
+# MAX_NEW_TOKENS: 256
+# TEMPERATURE: 0.01
+
 MODEL_TYPE: 'chatglm'
 MODEL_BIN_PATH: 'models/chatglm2-6b-int4'
 
-# EMBEDDINGS_MODEL: 'sentence-transformers/all-MiniLM-L6-v2'
-EMBEDDINGS_MODEL: 'models/all-MiniLM-L6-v2'
-MAX_NEW_TOKENS: 256
+MAX_NEW_TOKENS: 8192
 TEMPERATURE: 0.01
