@@ -28,7 +28,7 @@ if __name__ == "__main__":
     # query loop
     query = args.input
     if len(query) == 0:
-        query = input('\nEnter the query: ').strip() 
+        query = input('\nEnter the question: ').strip()
     while query != '\\q':
         start = timeit.default_timer()
         response = dbqa({'query': query})
@@ -37,6 +37,7 @@ if __name__ == "__main__":
         # Process source documents
         source_docs = response['source_documents'] if 'source_documents' in response else []
         for i, doc in enumerate(source_docs):
+            print('')
             print('='* 50)
             print(f'\nSource Document {i+1}\n')
             print(f'Source Text: {doc.page_content}')
@@ -46,6 +47,7 @@ if __name__ == "__main__":
                 print(f'Page Number: {doc.metadata["page"]}\n')
         
         print('='*50)
+        print(f'\nQuestion: {query}\n')
         print(f'\nAnswer: {response["result"]}\n')
         print('='*20)
         print(f"Time to retrieve response: {end - start}")
