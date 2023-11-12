@@ -33,6 +33,8 @@ def run_db_build():
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=cfg.CHUNK_SIZE,
                                                        chunk_overlap=cfg.CHUNK_OVERLAP)
 
+    if not documents:
+        return
 
     texts = text_splitter.split_documents(documents)
 

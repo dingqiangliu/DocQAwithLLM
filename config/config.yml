@@ -9,7 +9,7 @@ VECTOR_COUNT: 2
 
 
 # text split
-REG_SEPARATORS: '[.!。！]'
+REG_SEPARATORS: "\n[ \t\r\n]*\n|[.!。！•o]"
 CHUNK_SIZE: 500
 CHUNK_OVERLAP: 0
 
@@ -27,6 +27,7 @@ DB_FAISS_PATH: 'vectorstore/db_faiss'
 # EMBEDDINGS_MODEL: 'sentence-transformers/all-MiniLM-L6-v2'
 #EMBEDDINGS_MODEL: 'models/all-MiniLM-L6-v2'
 EMBEDDINGS_MODEL: 'models/paraphrase-multilingual-MiniLM-L12-v2'
+
 
 # LLM for generating answer
 
