@@ -1,3 +1,7 @@
+# general
+DEVICE: 'cpu'
+
+
 # searching
 SEARCH_ONLY: False
 RETURN_SOURCE_DOCUMENTS: True

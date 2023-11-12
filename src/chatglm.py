@@ -1,10 +1,16 @@
 # =========================
 #  Module: ChartGLM model
 # =========================
+import box
+import yaml
 from langchain.callbacks.manager import CallbackManagerForLLMRun
 from langchain.llms.base import LLM
 from typing import Any, Dict, List, Mapping, Optional
 from transformers import AutoTokenizer, AutoModel
+
+# Import config vars
+with open('config/config.yml', 'r', encoding='utf8') as ymlfile:
+    cfg = box.Box(yaml.safe_load(ymlfile))
 
 
 class ChatGLM(LLM):
@@ -32,11 +38,13 @@ class ChatGLM(LLM):
         """
         super().__init__(**kwargs)
         
-        self.chatglm_model = AutoModel.from_pretrained(self.model, 
-                                                  trust_remote_code=True).float()
+        self.chatglm_model = AutoModel.from_pretrained(self.model,
+                                                       trust_remote_code=True,
+                                                       device=cfg.DEVICE).float()
         self.chatglm_model = self.chatglm_model.eval()
         self.chatglm_tokenizer = AutoTokenizer.from_pretrained(self.model, 
-                                                          trust_remote_code=True)
+                                                               trust_remote_code=True,
+                                                               device=cfg.DEVICE)
 
                                           
     @property
