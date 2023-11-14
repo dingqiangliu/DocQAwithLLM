@@ -12,25 +12,25 @@ ___
 
 ## Quickstart
 - Ensure you have downloaded one of models for answer generation:
-  - the GGUF binary file of English model `TheBloke/Llama-2-7b` from https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF, with `MODEL_BIN_PATH` pointed to the location and `MODEL_TYPE: 'llama'` in `config/config.yml`.
-  - the GGML binary file of Chinese-English bilingual model `THUDM/chatglm3-6b` from https://modelscope.cn/models/tiansz/chatglm3-6b-ggml/ , with `MODEL_BIN_PATH` pointed to the location and `MODEL_TYPE: 'chatglm_cpp'` in `config/config.yml`.
+  - the GGUF binary file of English model `TheBloke/Llama-2-7b` from https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF, with `MODEL_BIN_PATH` pointing to the location and `MODEL_TYPE: 'llama'` in `config/config.yml`.
+  - the GGML binary file of Chinese-English bilingual model `THUDM/chatglm3-6b` from https://modelscope.cn/models/tiansz/chatglm3-6b-ggml/ , with `MODEL_BIN_PATH` pointing to the location and `MODEL_TYPE: 'chatglm_cpp'` in `config/config.yml`.
     You can also manually quantize it with command:
     ```bash
     # see: https://github.com/li-plus/chatglm.cpp
     python -m chatglm_cpp.convert -i THUDM/chatglm3-6b -t q4_0 -o models/chatglm3-6b-ggml.q4_0.bin
     ```
-  - all files of Chinese-English bilingual model  `THUDM/chatglm2-6b` from https://huggingface.co/THUDM/chatglm2-6b-int4 , , with `MODEL_BIN_PATH` to pointed the location and `MODEL_TYPE: 'chatglm'` in `config/config.yml`.
+  - all files of Chinese-English bilingual model `THUDM/chatglm2-6b` from https://huggingface.co/THUDM/chatglm2-6b-int4 , with `MODEL_BIN_PATH` pointing to the location and `MODEL_TYPE: 'chatglm'` in `config/config.yml`.
 
 - Ensure you have downloaded one of models for text embeddings:
-  - all files of English model `sentence-transformers/all-MiniLM-L6-v2` from https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2, with with `EMBEDDINGS_MODEL` pointed to the location in `config/config.yml`.
-  - all files of multilingal model `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` from https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2, with with `EMBEDDINGS_MODEL` pointed to the location in `config/config.yml`.
+  - all files of English model `sentence-transformers/all-MiniLM-L6-v2` from https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2, with `EMBEDDINGS_MODEL` pointing to the location in `config/config.yml`.
+  - all files of multilingal model `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` from https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2, with `EMBEDDINGS_MODEL` pointing to the location in `config/config.yml`.
 
 - Put your docs in `data/` directory, launch the terminal from the project directory and run the following command to index:
   ```bash
   python db_build.py
   ```
 
-- To start parsing user queries into the application, run  command`python main.py "<user query>".`For example, `python main.py "What is the minimum guarantee payable by Adidas?"`
+- To start parsing user queries into the application, run command`python main.py "<user query>".`For example, `python main.py "What is the minimum guarantee payable by Adidas?"`
   ![Alt text](assets/qa_output.png)
 ___
 ## Tools
