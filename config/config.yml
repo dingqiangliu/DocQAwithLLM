@@ -38,13 +38,20 @@ EMBEDDINGS_MODEL: 'models/paraphrase-multilingual-MiniLM-L12-v2'
 # MODEL_BIN_PATH: 'models/llama-2-7b-chat.Q2_K.gguf'
 # MODEL_BIN_PATH: 'models/llama-2-7b-chat.ggmlv3.q2_K.bin'
 # MODEL_BIN_PATH: 'models/llama-2-7b-chat.ggmlv3.q4_0.bin'
+# MODEL_BIN_PATH: 'models/llama-2-7b-chat.ggmlv3.q8_0.bin'
 # MODEL_BIN_PATH: 'models/Llama2-chat-Chinese-50W-GGML.ggmlv3.q8_0.bin'
 
 # MAX_NEW_TOKENS: 256
 # TEMPERATURE: 0.01
 
-MODEL_TYPE: 'chatglm'
-MODEL_BIN_PATH: 'models/chatglm2-6b-int4'
+MODEL_TYPE: 'chatglm_cpp'
+MODEL_BIN_PATH: 'models/chatglm3-6b-ggml.q4_0.bin'
 
-MAX_NEW_TOKENS: 8192
+MAX_NEW_TOKENS: 2048
 TEMPERATURE: 0.01
+
+# MODEL_TYPE: 'chatglm'
+# MODEL_BIN_PATH: 'models/chatglm2-6b-int4'
+
+# MAX_NEW_TOKENS: 8192
+# TEMPERATURE: 0.01

@@ -1,9 +1,6 @@
-# Running Open-Source LLMs on CPU Inference Locally for Document Q&A
-
-### Clearly explained guide for running quantized open-source LLM applications on CPUs using LLama 2, C Transformers, GGML, and LangChain
-
-**Step-by-step guide on TowardsDataScience**: https://towardsdatascience.com/running-llama-2-on-cpu-inference-for-document-q-a-3d636037a3d8
+# Document Q&A with LLMs Locally
 ___
+
 ## Context
 - Third-party commercial large language model (LLM) providers like OpenAI's GPT4 have democratized LLM use via simple API calls. 
 - However, there are instances where teams would require self-managed or private model deployment for reasons like data privacy and residency rules.
@@ -14,27 +11,37 @@ ___
 ___
 
 ## Quickstart
-- Ensure you have downloaded the GGML binary file from https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML or GGUF binary file from https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF , and placed it into the `models/` folder.
-  Or download all files of Chinese-English bilingual model from https://huggingface.co/THUDM/chatglm2-6b-int4 , and placed it into the `models/chatglm2-6b-int4` folder.
-  
-- Ensure you have downloaded all files from https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2 to directory `models/all-MiniLM-L6-v2/` to run without Internet. Another option is loading embedding model from Internet with setting in `config/config.yml`:
+- Ensure you have downloaded one of models for answer generation:
+  - the GGUF binary file of English model `TheBloke/Llama-2-7b` from https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF, with `MODEL_BIN_PATH` pointed to the location and `MODEL_TYPE: 'llama'` in `config/config.yml`.
+  - the GGML binary file of Chinese-English bilingual model `THUDM/chatglm3-6b` from https://modelscope.cn/models/tiansz/chatglm3-6b-ggml/ , with `MODEL_BIN_PATH` pointed to the location and `MODEL_TYPE: 'chatglm_cpp'` in `config/config.yml`.
+    You can also manually quantize it with command:
+    ```bash
+    # see: https://github.com/li-plus/chatglm.cpp
+    python -m chatglm_cpp.convert -i THUDM/chatglm3-6b -t q4_0 -o models/chatglm3-6b-ggml.q4_0.bin
+    ```
+  - all files of Chinese-English bilingual model  `THUDM/chatglm2-6b` from https://huggingface.co/THUDM/chatglm2-6b-int4 , , with `MODEL_BIN_PATH` to pointed the location and `MODEL_TYPE: 'chatglm'` in `config/config.yml`.
 
-  `EMBEDDINGS_MODEL: 'sentence-transformers/all-MiniLM-L6-v2'`
+- Ensure you have downloaded one of models for text embeddings:
+  - all files of English model `sentence-transformers/all-MiniLM-L6-v2` from https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2, with with `EMBEDDINGS_MODEL` pointed to the location in `config/config.yml`.
+  - all files of multilingal model `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` from https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2, with with `EMBEDDINGS_MODEL` pointed to the location in `config/config.yml`.
 
-  Or multilingal mode https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2.
+- Put your docs in `data/` directory, launch the terminal from the project directory and run the following command to index:
+  ```bash
+  python db_build.py
+  ```
 
-- To start parsing user queries into the application, launch the terminal from the project directory and run the following command:
-  `python main.py "<user query>"`
-
-- For example, `python main.py "What is the minimum guarantee payable by Adidas?"`
-![Alt text](assets/qa_output.png)
+- To start parsing user queries into the application, run  command`python main.py "<user query>".`For example, `python main.py "What is the minimum guarantee payable by Adidas?"`
+  ![Alt text](assets/qa_output.png)
 ___
 ## Tools
 - **LangChain**: Framework for developing applications powered by language models
 - **C Transformers**: Python bindings for the Transformer models implemented in C/C++ using GGML or GGUF library
+- **ChatGLM.cpp**: C++ implementation of [ChatGLM-6B](https://github.com/THUDM/ChatGLM-6B), [ChatGLM2-6B](https://github.com/THUDM/ChatGLM2-6B), [ChatGLM3-6B](https://github.com/THUDM/ChatGLM3) and more LLMs for real-time chatting on your MacBook.
 - **FAISS**: Open-source library for efficient similarity search and clustering of dense vectors.
-- **Sentence-Transformers (all-MiniLM-L6-v2)**: Open-source pre-trained transformer model for embedding text to a 384-dimensional dense vector space for tasks like clustering or semantic search.
+- **Sentence-Transformers (all-MiniLM-L6-v2)**: Open-source pre-trained transformer English model for embedding text to a 384-dimensional dense vector space for tasks like clustering or semantic search.
+- **Sentence-Transformers (paraphrase-multilingual-MiniLM-L12-v2)**: Open-source pre-trained transformer multilingual model for embedding text to a 384-dimensional dense vector space for tasks like clustering or semantic search.
 - **Llama-2-7B-Chat**: Open-source fine-tuned Llama 2 model designed for chat dialogue. Leverages publicly available instruction datasets and over 1 million human annotations. 
+- **ChatGLM3-6B**: Open-source Chinese-English bilingual model popular in Chinese community.
 
 ___
 ## Files and Content
@@ -50,14 +57,9 @@ ___
 ___
 
 ## References
+- https://github.com/langchain-ai/langchain
 - https://github.com/marella/ctransformers
-- https://huggingface.co/TheBloke
-- https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML
+- https://github.com/li-plus/chatglm.cpp
 - https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF
 - https://huggingface.co/THUDM/chatglm2-6b-int4
-- https://python.langchain.com/en/latest/integrations/ctransformers.html
-- https://python.langchain.com/en/latest/modules/models/llms/integrations/ctransformers.html
-- https://python.langchain.com/docs/ecosystem/integrations/ctransformers
-- https://ggml.ai
-- https://github.com/rustformers/llm/blob/main/crates/ggml/README.md
-- https://www.mdpi.com/2189676
+- https://huggingface.co/THUDM/chatglm3-6b

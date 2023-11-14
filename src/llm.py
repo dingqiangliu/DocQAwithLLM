@@ -11,6 +11,7 @@ from dotenv import find_dotenv, load_dotenv
 import box
 import yaml
 from src.chatglm import ChatGLM
+from src.chatglm_cpp import ChatGLMCPP
 
 
 # Load environment variables from .env file
@@ -54,6 +55,12 @@ def build_llm():
                               'max_length': cfg.MAX_NEW_TOKENS,
                               'temperature': cfg.TEMPERATURE}
                           )
+        elif cfg.MODEL_TYPE == 'chatglm_cpp':
+            llm = ChatGLMCPP(model=cfg.MODEL_BIN_PATH,
+                             config={
+                                 'max_length': cfg.MAX_NEW_TOKENS,
+                                 'temperature': cfg.TEMPERATURE}
+                             )
         else:
             # Local CTransformers model
             llm = CTransformers(model=cfg.MODEL_BIN_PATH,
