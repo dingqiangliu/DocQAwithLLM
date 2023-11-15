@@ -30,8 +30,8 @@ ___
   python db_build.py
   ```
 
-- To start parsing user queries into the application, run command`python main.py "<user query>".`For example, `python main.py "What is the minimum guarantee payable by Adidas?"`
-  ![Alt text](assets/qa_output.png)
+- To start parsing user queries into the application, run command`python main.py "<user query>".`For example, `python main.py "What's the hightlights of Opentext IDOL?"`或`python main.py "Opentext的IDOL有什么亮点？"`
+  ![demo](assets/qa_output.png)
 ___
 ## Tools
 - **LangChain**: Framework for developing applications powered by language models
