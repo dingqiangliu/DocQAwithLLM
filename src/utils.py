@@ -12,6 +12,7 @@ from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
 from src.prompts import qa_template
 from src.llm import build_llm
+from src.idol import IDOL
 
 # Import config vars
 with open('config/config.yml', 'r', encoding='utf8') as ymlfile:
@@ -40,7 +41,15 @@ def build_retrieval_qa(llm, prompt, vectordb):
 def setup_dbqa():
     embeddings = HuggingFaceEmbeddings(model_name=cfg.EMBEDDINGS_MODEL,
                                        model_kwargs={'device': cfg.DEVICE})
-    vectordb = FAISS.load_local(cfg.DB_FAISS_PATH, embeddings)
+
+    if cfg.VECTOR_DB == 'IDOL' :
+        vectordb = IDOL(embeddings, url = cfg.IDOL_SEARCH_URL,
+                        vector_field = cfg.IDOL_VECTOR_FIELD,
+                        database = cfg.IDOL_DATABASE,
+                        vector_search = cfg.IDOL_VECTOR_SEARCH)
+    else:
+        vectordb = FAISS.load_local(cfg.DB_FAISS_PATH, embeddings)
+
     llm = build_llm()
     qa_prompt = set_qa_prompt()
     dbqa = build_retrieval_qa(llm, qa_prompt, vectordb)

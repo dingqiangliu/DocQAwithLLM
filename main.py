@@ -30,6 +30,12 @@ if __name__ == "__main__":
     if not query:
         query = input('\nEnter the question: ').strip()
     while query != '\\q':
+        if query == '\\timing':
+            cfg.TIMING = not cfg.TIMING
+            print('Timing is {}'.format('on' if cfg.TIMING else 'off'))
+            query = input('\nEnter the query: ')
+            continue
+
         start = timeit.default_timer()
         response = dbqa({'query': query})
         end = timeit.default_timer()
@@ -49,8 +55,9 @@ if __name__ == "__main__":
         print('='*50)
         print(f'\nQuestion: {query}\n')
         print(f'\nAnswer: {response["result"]}\n')
-        print('='*20)
-        print(f"Time to retrieve response: {end - start}")
+        if cfg.TIMING:
+            print('='*20)
+            print(f"Time to retrieve response: {end - start}")
         
         if args.input:
             break

@@ -3,6 +3,7 @@ DEVICE: 'cpu'
 
 
 # searching
+TIMING: True
 SEARCH_ONLY: False
 RETURN_SOURCE_DOCUMENTS: True
 VECTOR_COUNT: 2
@@ -18,8 +19,19 @@ CHUNK_OVERLAP: 0
 DATA_PATH: 'data/'
 
 
-# vector database
+# vector database: FAISS, or IDOL
+VECTOR_DB: 'FAISS'
+
+# for FAISS
 DB_FAISS_PATH: 'vectorstore/db_faiss'
+
+# for IDOL
+IDOL_SEARCH_URL: 'http://localhost:9100'
+IDOL_INDEX_URL: 'http://localhost:9101'
+IDOL_INDEX_BATCH_SIZE: 2621440
+IDOL_VECTOR_FIELD: 'VECTOR'
+IDOL_DATABASE: 'DOCQA'
+IDOL_VECTOR_SEARCH: True
 
 
 # sentence transformers model for vector search
@@ -48,7 +60,7 @@ MODEL_TYPE: 'chatglm_cpp'
 MODEL_BIN_PATH: 'models/chatglm3-6b-ggml.q4_0.bin'
 
 MAX_NEW_TOKENS: 2048
-TEMPERATURE: 0.01
+TEMPERATURE: 0
 
 # MODEL_TYPE: 'chatglm'
 # MODEL_BIN_PATH: 'models/chatglm2-6b-int4'

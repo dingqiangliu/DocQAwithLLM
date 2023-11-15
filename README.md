@@ -37,6 +37,7 @@ ___
 - **LangChain**: Framework for developing applications powered by language models
 - **C Transformers**: Python bindings for the Transformer models implemented in C/C++ using GGML or GGUF library
 - **ChatGLM.cpp**: C++ implementation of [ChatGLM-6B](https://github.com/THUDM/ChatGLM-6B), [ChatGLM2-6B](https://github.com/THUDM/ChatGLM2-6B), [ChatGLM3-6B](https://github.com/THUDM/ChatGLM3) and more LLMs for real-time chatting on your MacBook.
+- **IDOL**: IDOL is a commercial enterprise search engine with vector index and search capability.
 - **FAISS**: Open-source library for efficient similarity search and clustering of dense vectors.
 - **Sentence-Transformers (all-MiniLM-L6-v2)**: Open-source pre-trained transformer English model for embedding text to a 384-dimensional dense vector space for tasks like clustering or semantic search.
 - **Sentence-Transformers (paraphrase-multilingual-MiniLM-L12-v2)**: Open-source pre-trained transformer multilingual model for embedding text to a 384-dimensional dense vector space for tasks like clustering or semantic search.
@@ -63,3 +64,4 @@ ___
 - https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF
 - https://huggingface.co/THUDM/chatglm2-6b-int4
 - https://huggingface.co/THUDM/chatglm3-6b
+- https://www.microfocus.com/documentation/idol/IDOL_23_4/Content_23.4_Documentation/Help/Content/Actions/QueryTypes/Vector_Search.htm
