@@ -150,7 +150,13 @@ class IDOL(VectorStore):
         else:
             text = f'DetectLanguageType=true&anylanguage=true&text={query}'
         url = f'{self.url}/a=query&ResponseFormat=json&maxresults={k}&{text}'
-        res = requests.get(url)
+
+        try:
+            res = requests.get(url)
+        except Exception as e:
+            print(f'ERROR: {e}')
+            return []
+
         jres = json.loads(res.text)
         res_data = jres['autnresponse']['responsedata']
         if not 'autn:numhits' in res_data:
