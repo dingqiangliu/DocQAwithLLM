@@ -21,7 +21,7 @@ class IDOL(VectorStore):
         vector_field: Optional[str] = 'VECTOR',
         database: Optional[str] = 'DOCQA',
         index_batch_size: Optional[int] = 5*1204*1024,
-        vector_search: Optional[bool] = True,
+        search_type: Optional[str] = 'KEYWORD_VECTOR',
     ):
         """Initialize with necessary components."""
         self.embedding = embedding
@@ -29,7 +29,7 @@ class IDOL(VectorStore):
         self.vector_field = vector_field
         self.database = database
         self.index_batch_size = index_batch_size
-        self.vector_search = vector_search
+        self.search_type = search_type
 
 
     def _index(self, content: str):
@@ -142,14 +142,20 @@ class IDOL(VectorStore):
             List of Documents most similar to the query.
         """
         # search doc from IDOL Content
-        text = ''
-        if self.vector_search:
+        if 'VECTOR' in self.search_type:
             query_embedding = self.embedding.embed_query(query)
             vector = ','.join([str(x) for x in query_embedding])
-            text = 'text=VECTOR{' + vector + '}:VECTOR'
+
+        if self.search_type == 'VECTOR':
+            text = f'text=VECTOR{{{vector}}}:VECTOR'
+        elif self.search_type == 'KEYWORD_VECTOR':
+            text = f'text={query} AND VECTOR{{{vector}}}:VECTOR'
+        elif self.search_type == 'VECTOR_KEYWORD':
+            text = f'text=VECTOR{{{vector}}}:VECTOR AND {query}'
         else:
-            text = f'DetectLanguageType=true&anylanguage=true&text={query}'
-        url = f'{self.url}/a=query&ResponseFormat=json&maxresults={k}&{text}'
+            #'KEYWORD'
+            text = f'text={query}'
+        url = f'{self.url}/a=query&DetectLanguageType=true&anylanguage=true&ResponseFormat=json&maxresults={k}&{text}'
 
         try:
             res = requests.get(url)
@@ -171,6 +177,19 @@ class IDOL(VectorStore):
                 for c in hit['autn:content']['DOCUMENT'] ]
 
 
+    def _sync(
+        self,
+    ) -> None:
+        """
+        Flush all files of IDOL to disk.
+        """
+        url = f'{self.url}/DRESYNC'
+        try:
+            requests.get(url)
+        except Exception as e:
+            print(f'ERROR: {e}')
+
+
     @classmethod
     def from_texts(
         cls,
@@ -181,7 +200,7 @@ class IDOL(VectorStore):
         vector_field: Optional[str] = 'VECTOR',
         database: Optional[str] = 'DOCQA',
         index_batch_size: Optional[int] = 5*1204*1024,
-        vector_search: Optional[bool] = True,
+        search_type: Optional[str] = 'KEYWORD_VECTOR',
         **kwargs: Any,
     ) -> IDOL:
         """Construct IDOL wrapper from raw documents.
@@ -191,6 +210,7 @@ class IDOL(VectorStore):
         This is intended to be a quick way to get started.
         """
         idol = cls(embedding, url, vector_field, database, index_batch_size,
-                   vector_search);
+                   search_type);
         idol.add_texts(texts, metadatas)
+        idol._sync()
         return idol

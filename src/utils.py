@@ -46,7 +46,7 @@ def setup_dbqa():
         vectordb = IDOL(embeddings, url = cfg.IDOL_SEARCH_URL,
                         vector_field = cfg.IDOL_VECTOR_FIELD,
                         database = cfg.IDOL_DATABASE,
-                        vector_search = cfg.IDOL_VECTOR_SEARCH)
+                        search_type = cfg.IDOL_SEARCH_TYPE)
     else:
         vectordb = FAISS.load_local(cfg.DB_FAISS_PATH, embeddings)
 

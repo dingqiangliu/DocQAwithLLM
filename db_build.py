@@ -48,7 +48,7 @@ def run_db_build():
                             field = cfg.IDOL_VECTOR_FIELD,
                             database = cfg.IDOL_DATABASE,
                             index_batch_size = cfg.IDOL_INDEX_BATCH_SIZE,
-                            vector_search = cfg.IDOL_VECTOR_SEARCH)
+                            search_type = cfg.IDOL_SEARCH_TYPE)
     else:
         vectorstore = FAISS.from_documents(texts, embeddings)
         vectorstore.save_local(cfg.DB_FAISS_PATH)
