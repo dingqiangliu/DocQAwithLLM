@@ -87,10 +87,10 @@ class IDOL(VectorStore):
             ids.append(f'{source}#{section}')
             vector = ','.join([str(x) for x in embeddings[i]])
             content = texts[i]
+            #no "#DRESECTION {section}"
             index = f"""{index}
-#DREREFERENCE {source}
+#DREREFERENCE {source}#{section}
 #DREFIELD {self.vector_field}="{vector}"
-#DRESECTION {section}
 #DREDBNAME {self.database}
 #DRECONTENT
 {content}
