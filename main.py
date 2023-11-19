@@ -3,6 +3,9 @@ import timeit
 import yaml
 import argparse
 from dotenv import find_dotenv, load_dotenv
+import atexit
+import os
+import readline
 from src.utils import setup_dbqa
 
 # Load environment variables from .env file
@@ -28,7 +31,16 @@ if __name__ == "__main__":
     # query loop
     query = args.input
     if not query:
+        histfile = os.path.join(os.path.expanduser("~"), ".docqa_history")
+        try:
+            readline.read_history_file(histfile)
+            readline.set_history_length(1000)
+        except FileNotFoundError:
+            pass
+        atexit.register(readline.write_history_file, histfile)
+
         query = input('\nEnter the question: ').strip()
+
     while query != '\\q':
         if query == '\\timing':
             cfg.TIMING = not cfg.TIMING
