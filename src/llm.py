@@ -12,6 +12,7 @@ import box
 import yaml
 from src.chatglm import ChatGLM
 from src.chatglm_cpp import ChatGLMCPP
+from src.ollama import Ollama
 
 
 # Load environment variables from .env file
@@ -57,6 +58,12 @@ def build_llm():
                           )
         elif cfg.MODEL_TYPE == 'chatglm_cpp':
             llm = ChatGLMCPP(model=cfg.MODEL_BIN_PATH,
+                             config={
+                                 'max_length': cfg.MAX_NEW_TOKENS,
+                                 'temperature': cfg.TEMPERATURE}
+                             )
+        elif cfg.MODEL_TYPE == 'ollama':
+            llm = Ollama(model=cfg.MODEL_BIN_PATH,
                              config={
                                  'max_length': cfg.MAX_NEW_TOKENS,
                                  'temperature': cfg.TEMPERATURE}

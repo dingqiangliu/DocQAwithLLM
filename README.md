@@ -20,6 +20,15 @@ ___
     python -m chatglm_cpp.convert -i THUDM/chatglm3-6b -t q4_0 -o models/chatglm3-6b-ggml.q4_0.bin
     ```
   - all files of Chinese-English bilingual model `THUDM/chatglm2-6b` from https://huggingface.co/THUDM/chatglm2-6b-int4 , with `MODEL_BIN_PATH` pointing to the location and `MODEL_TYPE: 'chatglm'` in `config/config.yml`.
+  - pull and run model in ollama with model name to `MODEL_BIN_PATH` and `MODEL_TYPE: 'ollama'` in `config/config.yml`.
+    ```bash
+    # setup ollama
+    curl -fsSL https://ollama.com/install.sh | sh
+    sudo systemctl start ollama
+
+    # pull model
+    ollama run qwen2.5:3b
+    ```
 
 - Ensure you have downloaded one of models for text embeddings:
   - all files of English model `sentence-transformers/all-MiniLM-L6-v2` from https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2, with `EMBEDDINGS_MODEL` pointing to the location in `config/config.yml`.
